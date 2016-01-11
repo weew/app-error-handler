@@ -1,0 +1,30 @@
+{
+    "name": "weew/php-app-error-handler",
+    "description": "Error handling component for the weew/php-app package.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maxim Kott",
+            "email": "maximkott@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "weew/php-container": "^1.0",
+        "weew/php-error-handler": "^2.3",
+        "weew/php-app": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7",
+        "satooshi/php-coveralls": "^0.6.1"
+    }
+}
