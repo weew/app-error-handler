@@ -2,6 +2,7 @@
 
 namespace Weew\App\ErrorHandler;
 
+use Exception;
 use Weew\Container\IContainer;
 use Weew\ErrorHandler\ErrorHandler;
 use Weew\ErrorHandler\IErrorHandler;
@@ -18,5 +19,18 @@ class ErrorHandlingProvider {
 
         $errorHandler->convertErrorsToExceptions(true);
         $errorHandler->enableExceptionHandling();
+
+        $errorHandler->addExceptionHandler([$this, 'setStatusCodeOnError']);
+    }
+
+    /**
+     * @param Exception $ex
+     *
+     * @return bool
+     */
+    public function setStatusCodeOnError(Exception $ex) {
+        header('HTTP/1.1 500 Internal Server Error');
+
+        return false;
     }
 }
