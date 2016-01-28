@@ -51,6 +51,8 @@ class ErrorHandlingProvider {
      * Set status code to 500.
      */
     public function setInternalServerErrorStatusCode() {
-        header('HTTP/1.1 500 Internal Server Error');
+        if ( ! headers_sent()) {
+            header('HTTP/1.1 500 Internal Server Error');
+        }
     }
 }
