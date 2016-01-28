@@ -7,6 +7,7 @@ use PHPUnit_Framework_TestCase;
 use Weew\App\App;
 use Weew\App\ErrorHandler\ErrorHandlingProvider;
 use Weew\ErrorHandler\ErrorHandler;
+use Weew\ErrorHandler\Errors\FatalError;
 use Weew\ErrorHandler\IErrorHandler;
 
 class ErrorHandlingProviderTest extends PHPUnit_Framework_TestCase {
@@ -39,7 +40,18 @@ class ErrorHandlingProviderTest extends PHPUnit_Framework_TestCase {
         $app = $this->createApp();
         /** @var ErrorHandlingProvider $provider */
         $provider = $app->getContainer()->get(ErrorHandlingProvider::class);
-        $provider->setStatusCodeOnError(new Exception());
+        $provider->handleError(new FatalError(null, null, null, null));
+        $this->assertEquals(500, http_response_code());
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function test_set_status_code_on_exception() {
+        $app = $this->createApp();
+        /** @var ErrorHandlingProvider $provider */
+        $provider = $app->getContainer()->get(ErrorHandlingProvider::class);
+        $provider->handleException(new Exception());
         $this->assertEquals(500, http_response_code());
     }
 }
