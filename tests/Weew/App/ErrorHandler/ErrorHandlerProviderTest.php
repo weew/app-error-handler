@@ -5,15 +5,15 @@ namespace Tests\Weew\App\ErrorHandler;
 use Exception;
 use PHPUnit_Framework_TestCase;
 use Weew\App\App;
-use Weew\App\ErrorHandler\ErrorHandlingProvider;
+use Weew\App\ErrorHandler\ErrorHandlerProvider;
 use Weew\ErrorHandler\ErrorHandler;
 use Weew\ErrorHandler\Errors\FatalError;
 use Weew\ErrorHandler\IErrorHandler;
 
-class ErrorHandlingProviderTest extends PHPUnit_Framework_TestCase {
+class ErrorHandlerProviderTest extends PHPUnit_Framework_TestCase {
     private function createApp() {
         $app = new App();
-        $app->getKernel()->addProvider(ErrorHandlingProvider::class);
+        $app->getKernel()->addProvider(ErrorHandlerProvider::class);
         $app->run();
 
         return $app;
@@ -38,8 +38,8 @@ class ErrorHandlingProviderTest extends PHPUnit_Framework_TestCase {
      */
     public function test_set_status_code_on_error() {
         $app = $this->createApp();
-        /** @var ErrorHandlingProvider $provider */
-        $provider = $app->getContainer()->get(ErrorHandlingProvider::class);
+        /** @var ErrorHandlerProvider $provider */
+        $provider = $app->getContainer()->get(ErrorHandlerProvider::class);
         $provider->handleError(new FatalError(null, null, null, null));
         $this->assertEquals(500, http_response_code());
     }
@@ -49,8 +49,8 @@ class ErrorHandlingProviderTest extends PHPUnit_Framework_TestCase {
      */
     public function test_set_status_code_on_exception() {
         $app = $this->createApp();
-        /** @var ErrorHandlingProvider $provider */
-        $provider = $app->getContainer()->get(ErrorHandlingProvider::class);
+        /** @var ErrorHandlerProvider $provider */
+        $provider = $app->getContainer()->get(ErrorHandlerProvider::class);
         $provider->handleException(new Exception());
         $this->assertEquals(500, http_response_code());
     }

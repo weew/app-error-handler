@@ -8,7 +8,7 @@ use Weew\ErrorHandler\ErrorHandler;
 use Weew\ErrorHandler\Errors\IError;
 use Weew\ErrorHandler\IErrorHandler;
 
-class ErrorHandlingProvider {
+class ErrorHandlerProvider {
     /**
      * @param IContainer $container
      * @param ErrorHandler $errorHandler
