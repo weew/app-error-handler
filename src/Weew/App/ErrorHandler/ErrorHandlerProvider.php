@@ -32,8 +32,6 @@ class ErrorHandlerProvider {
      */
     public function handleError(IError $error) {
         $this->setInternalServerErrorStatusCode();
-
-        return false;
     }
 
     /**
@@ -43,8 +41,6 @@ class ErrorHandlerProvider {
      */
     public function handleException(Exception $exception) {
         $this->setInternalServerErrorStatusCode();
-
-        return false;
     }
 
     /**
