@@ -1,6 +1,6 @@
 {
-    "name": "weew/php-app-error-handler",
-    "description": "Error handling component for the weew/php-app package.",
+    "name": "weew/app-error-handler",
+    "description": "Error handling component for the weew/app package.",
     "license": "MIT",
     "authors": [
         {
@@ -19,8 +19,8 @@
         }
     },
     "require": {
-        "weew/php-error-handler": "^3.0",
-        "weew/php-app": "^2.0"
+        "weew/error-handler": "^3.0",
+        "weew/app": "^2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.7",
